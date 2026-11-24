@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="A simple student management system built with HTML, CSS and JavaScript.">
+  <title>Student Management System</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="script.js" defer></script>
+</head>
+<body>
+  <div class="app-shell">
+    <header class="topbar">
+      <div class="brand-mark" aria-hidden="true">SMS</div>
+      <div class="brand-copy">
+        <p class="eyebrow">STUDENT PORTAL</p>
+        <h1>Student Management System</h1>
+        <p class="subtitle">Manage student records and track academic results.</p>
+      </div>
+    </header>
+
+    <main>
+      <section class="stats-grid" aria-label="Student summary">
+        <article class="stat-card"><span class="stat-label">Total Students</span><strong id="total-count">0</strong><span class="stat-note">Registered records</span></article>
+        <article class="stat-card"><span class="stat-label">Passed</span><strong id="pass-count" class="green-text">0</strong><span class="stat-note">Marks 40 and above</span></article>
+        <article class="stat-card"><span class="stat-label">Failed</span><strong id="fail-count" class="red-text">0</strong><span class="stat-note">Marks below 40</span></article>
+        <article class="stat-card"><span class="stat-label">Pass Percentage</span><strong id="pass-rate">0%</strong><span class="stat-note">Based on all students</span></article>
+      </section>
+
+      <section class="panel form-panel" aria-labelledby="form-heading">
+        <div class="section-heading">
+          <div><p class="eyebrow">STUDENT RECORD</p><h2 id="form-heading">Add a student</h2></div>
+          <span class="form-hint">Pass mark: 40 / 100</span>
+        </div>
+        <form id="student-form" autocomplete="off">
+          <div class="form-fields">
+            <label>Student name<input id="student-name" name="studentName" type="text" placeholder="Enter student name" maxlength="60" required></label>
+            <label>Marks (0–100)<input id="student-marks" name="studentMarks" type="number" placeholder="Enter marks" min="0" max="100" step="1" required></label>
+            <button id="save-button" class="primary-button" type="submit">Add Student</button>
+            <button id="cancel-edit" class="secondary-button hidden" type="button">Cancel</button>
+          </div>
+          <p id="form-message" class="form-message" role="status" aria-live="polite"></p>
+        </form>
+      </section>
+
+      <section class="panel list-panel" aria-labelledby="list-heading">
+        <div class="section-heading list-heading">
+          <div><p class="eyebrow">RECORDS</p><h2 id="list-heading">Student List</h2></div>
+          <div class="list-tools">
+            <input id="search-input" class="search-input" type="search" placeholder="Search students..." aria-label="Search students by name">
+            <select id="status-filter" aria-label="Filter by result">
+              <option value="all">All results</option><option value="pass">PASS</option><option value="fail">FAIL</option>
+            </select>
+          </div>
+        </div>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>#</th><th>Student Name</th><th>Marks</th><th>Grade</th><th>Result</th><th>Actions</th></tr></thead>
+            <tbody id="student-table-body"></tbody>
+          </table>
+          <div id="empty-state" class="empty-state hidden">No students found. Add a student or change your search.</div>
+        </div>
+        <div class="table-footer"><span id="record-count">Showing 0 students</span><button id="reset-button" class="text-button" type="button">Restore sample students</button></div>
+      </section>
+    </main>
+
+    <footer><strong>Student Management System</strong><span>Built with HTML, CSS and Vanilla JavaScript · Data saved in this browser</span></footer>
+  </div>
+</body>
+</html>
